@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import { Quasar, Dark, Notify, Dialog } from 'quasar'
+import router from './router'
 
 // Import icon libraries
 import '@quasar/extras/roboto-font-latin-ext/roboto-font-latin-ext.css'
@@ -14,7 +15,7 @@ import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
 import 'quasar/src/css/index.sass'
 
 const app = createApp(App)
-
+app.use(router)
 app.use(Quasar, {
     plugins: {
         Notify,

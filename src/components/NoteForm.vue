@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from "vue";
+import { Notify } from 'quasar';
 
 const noteCard = ref(false);
 
@@ -9,7 +10,13 @@ const content = ref("");
 const emit = defineEmits(['note-added'])
 function onSubmit() {
   if (!title.value || !content.value) {
-    // Display a toast error message
+    Notify.create({
+        message: 'Note Title and content are required',
+        type: "negative",
+        actions: [
+            { icon: 'close', color: 'white', round: true, }
+        ]
+    })
     return;
   };
 
