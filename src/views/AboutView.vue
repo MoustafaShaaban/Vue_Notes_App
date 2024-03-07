@@ -23,6 +23,11 @@
                             3</a>
                     </q-item>
                     <q-item clickable v-ripple>
+                        <a :class="$q.dark.isActive ? 'text-white' : 'text-dark'" href="https://vueuse.org/"
+                            target="_blank">VueUse
+                            3</a>
+                    </q-item>
+                    <q-item clickable v-ripple>
                         <a :class="$q.dark.isActive ? 'text-white' : 'text-dark'" href="https://quasar.dev/"
                             target="_blank">Quasar
                             Framework</a>
