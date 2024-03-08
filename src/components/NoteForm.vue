@@ -11,11 +11,11 @@ const emit = defineEmits(['note-added'])
 function onSubmit() {
   if (!title.value || !content.value) {
     Notify.create({
-        message: 'Note Title and content are required',
-        type: "negative",
-        actions: [
-            { icon: 'close', color: 'white', round: true, }
-        ]
+      message: 'Note Title and content are required',
+      type: "negative",
+      actions: [
+        { icon: 'close', color: 'white', round: true, }
+      ]
     })
     return;
   };
