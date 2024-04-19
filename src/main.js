@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
-import './style.css'
+import { createPinia } from 'pinia'
+import 'vue-multiselect/dist/vue-multiselect.css'
 import App from './App.vue'
 import { Quasar, Dark, Notify, Dialog } from 'quasar'
 import router from './router'
@@ -15,6 +16,7 @@ import '@quasar/extras/fontawesome-v6/fontawesome-v6.css'
 import 'quasar/src/css/index.sass'
 
 const app = createApp(App)
+const pinia = createPinia()
 app.use(router)
 app.use(Quasar, {
     plugins: {
@@ -23,5 +25,7 @@ app.use(Quasar, {
         Dark,
     } // import Quasar plugins and add here
 })
+
+app.use(pinia)
 
 app.mount('#app')

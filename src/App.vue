@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { Dark } from 'quasar';
+import { useNotesStore } from './stores/notes';
 
 const drawerLeft = ref(false);
 const darkQuery = '(prefers-color-scheme: dark)';
@@ -11,13 +12,16 @@ queryList.addEventListener('change', (event) => {
 });
 
 function toggleDarkMode() {
-    Dark.toggle();
+  Dark.toggle();
 };
+
+const notesStore = useNotesStore();
+
 </script>
 
 <template>
   <div class="q-pa-md">
-    <q-layout view="hHh Lpr lff">
+    <q-layout view="hHh Lpr lff" :class="Dark.isActive ? 'text-white' : 'text-dark'">
 
       <q-header reveal elevated class="bg-primary text-white">
         <q-toolbar>
@@ -28,6 +32,14 @@ function toggleDarkMode() {
               <q-breadcrumbs-el label="About" class="text-white" icon="info" to="/about" />
             </q-breadcrumbs>
           </q-toolbar-title>
+
+          <q-input dark dense standout v-model="notesStore.searchQuery" type="search" hint="Search by Title or Content" class="q-my-xs">
+          <template v-slot:append>
+            <q-icon v-if="notesStore.searchQuery === ''" name="search" />
+            <q-icon v-else name="clear" class="cursor-pointer" @click="notesStore.searchQuery = ''" />
+          </template>
+        </q-input>
+        
         </q-toolbar>
       </q-header>
 
@@ -54,13 +66,23 @@ function toggleDarkMode() {
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple @click="toggleDarkMode">
+            <q-item v-if="!Dark.isActive" clickable v-ripple @click="toggleDarkMode">
               <q-item-section avatar>
                 <q-icon name="dark_mode" />
               </q-item-section>
 
               <q-item-section>
                 Toggle Dark Mode
+              </q-item-section>
+            </q-item>
+
+            <q-item v-else clickable v-ripple @click="toggleDarkMode">
+              <q-item-section avatar>
+                <q-icon name="light_mode" />
+              </q-item-section>
+
+              <q-item-section>
+                Toggle Light Mode
               </q-item-section>
             </q-item>
           </q-list>
