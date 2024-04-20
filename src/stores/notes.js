@@ -12,7 +12,10 @@ export const useNotesStore = defineStore('notes', {
   getters: {
     getNoteById: (state) => {
       return (id) => state.notes.find((note) => note.id === id)
-    }
+    },
+    getTagById: (state) => {
+      return (id) => state.tags.find((tag) => tag.id === id)
+    },
   },
   actions: {
     addNote(note) {

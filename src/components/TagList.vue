@@ -13,6 +13,12 @@ const notesStore = useNotesStore();
         <q-card-section>
             <div class="text-h6">{{ tag.name }}</div>
         </q-card-section>
+        
+        <q-separator />
+        
+        <q-card-actions>
+          <q-btn color="info" flat :to="{ name: 'tag-detail', params: { id: tag.id } }">Details</q-btn>
+        </q-card-actions>
       </q-card>
     </div>
     <div v-else>
