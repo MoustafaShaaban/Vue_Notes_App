@@ -66,6 +66,16 @@ const notesStore = useNotesStore();
               </q-item-section>
             </q-item>
 
+            <q-item exact clickable v-ripple to="/tags">
+              <q-item-section avatar>
+                <q-icon name="menu" />
+              </q-item-section>
+
+              <q-item-section>
+                All Tags
+              </q-item-section>
+            </q-item>
+
             <q-item v-if="!Dark.isActive" clickable v-ripple @click="toggleDarkMode">
               <q-item-section avatar>
                 <q-icon name="dark_mode" />

@@ -23,12 +23,6 @@
             </multiselect>
           </div>
 
-          <q-separator />
-
-          <q-card-actions class="q-my-md">
-            <q-btn label="Reset" type="reset" color="info" />
-          </q-card-actions>
-
           <q-page-sticky position="bottom-right" :offset="[18, 18]">
             <q-btn type="submit" fab icon="done" color="primary">
             </q-btn>

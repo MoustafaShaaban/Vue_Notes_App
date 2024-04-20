@@ -4,12 +4,7 @@ import { date } from 'quasar';
 import { RouterLink } from 'vue-router';
 import { useNotesStore } from '../stores/notes';
 
-
 const notesStore = useNotesStore();
-
-
-
-const searchInput = ref("");
 
 const searchResult = computed(() => {
   return notesStore.notes.filter((note) => {
@@ -33,7 +28,10 @@ const searchResult = computed(() => {
           <div class="row items-center no-wrap">
             <div class="col">
               <div class="text-h6">{{ note.title }}</div>
-              <div class="text-subtitle2">{{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}</div>
+              <div class="text-subtitle2">
+                {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
+                <q-badge rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">{{ tag.name}}</q-badge>
+              </div>
             </div>
 
             <div class="col-auto">
@@ -69,9 +67,9 @@ const searchResult = computed(() => {
       <p>No Notes Found, Click on the plus (+) sign to add a new note</p>
     </div>
 
-    <div v-if="searchResult.length == 0">
+    <!-- <div v-if="searchResult.length == 0">
       <p>No Notes Found with the provided title or content, Please try another search query.</p>
-    </div>
+    </div> -->
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
       <q-btn fab icon="add" color="primary" :to="{ name: 'add-note' }">

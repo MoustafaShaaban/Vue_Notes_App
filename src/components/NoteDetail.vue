@@ -69,12 +69,11 @@ function confirm(id) {
         <q-card v-if="isEditing" flat bordered class="my-card">
             <q-card-section class="row items-center q-pb-none q-mb-md" vertical>
                 <div class="text-h6">Edit: {{ note.title }}</div>
-            </q-card-section>
-
-            <q-separator />
-            <div class="text-overline">
-                    <q-badge rounded color="primary" class="q-mx-xs q-my-xs" v-for="tag in note.tags">{{ tag.name }}</q-badge>
+                <div class="text-subtitle2">
+                    {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
+                    <q-badge rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">{{ tag.name}}</q-badge>
                 </div>
+            </q-card-section>
 
             <q-card-section>
                 <q-form @submit.prevent="handleSubmit">
@@ -110,7 +109,10 @@ function confirm(id) {
                 <div class="row items-center no-wrap">
                     <div class="col">
                         <div class="text-h6">{{ note.title }}</div>
-                        <div class="text-subtitle2">{{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}</div>
+                        <div class="text-subtitle2">
+                            {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
+                            <q-badge rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">{{ tag.name}}</q-badge>
+                        </div>
                     </div>
                 </div>
             </q-card-section>
