@@ -3,9 +3,9 @@ import HomeView from "../views/HomeView.vue";
 import NotFound from "../views/NotFound.vue";
 import NoteForm from "../components/NoteForm.vue";
 import NoteDetail from "../components/NoteDetail.vue";
-import TagForm from "../components/TagForm.vue";
-import TagList from "../components/TagList.vue";
-import TagDetail from "../components/TagDetail.vue";
+// import TagForm from "../components/TagForm.vue";
+// import TagList from "../components/TagList.vue";
+// import TagDetail from "../components/TagDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,21 +25,21 @@ const router = createRouter({
       name: 'note-detail',
       component: NoteDetail,
     },
-    {
-      path: '/tags',
-      name: 'tags',
-      component: TagList,
-    },
-    {
-      path: '/add-tag',
-      name: 'add-tag',
-      component: TagForm,
-    },
-    {
-      path: '/tag-detail/:id',
-      name: 'tag-detail',
-      component: TagDetail,
-    },
+    // {
+    //   path: '/tags',
+    //   name: 'tags',
+    //   component: TagList,
+    // },
+    // {
+    //   path: '/add-tag',
+    //   name: 'add-tag',
+    //   component: TagForm,
+    // },
+    // {
+    //   path: '/tag-detail/:id',
+    //   name: 'tag-detail',
+    //   component: TagDetail,
+    // },
     {
       path: "/about",
       name: "about",

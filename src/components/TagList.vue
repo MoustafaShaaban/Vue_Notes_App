@@ -1,10 +1,3 @@
-<script setup>
-import { useNotesStore } from '../stores/notes';
-
-const notesStore = useNotesStore();
-
-</script>
-
 <template>
   <q-page class="flex flex-center column">
 
@@ -22,7 +15,7 @@ const notesStore = useNotesStore();
       </q-card>
     </div>
     <div v-else>
-      <p>No tags Found, Click on the plus (+) sign to add a new note</p>
+      <p>No tags Found, Click on the plus (+) sign to add a new tag</p>
     </div>
 
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
@@ -31,6 +24,13 @@ const notesStore = useNotesStore();
     </q-page-sticky>
   </q-page>
 </template>
+
+<script setup>
+  import { useNotesStore } from '../stores/notes';
+
+  const notesStore = useNotesStore();
+
+</script>
 
 <style lang="sass" scoped>
 .tag-card

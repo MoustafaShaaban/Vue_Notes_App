@@ -30,7 +30,7 @@ const searchResult = computed(() => {
               <div class="text-h6">{{ note.title }}</div>
               <div class="text-subtitle2">
                 {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
-                <q-badge rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">{{ tag.name}}</q-badge>
+                <!-- <q-badge rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">{{ tag.name}}</q-badge> -->
               </div>
             </div>
 

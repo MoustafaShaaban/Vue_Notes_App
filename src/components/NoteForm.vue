@@ -17,11 +17,11 @@
 
           <q-separator />
 
-          <div class="q-my-md"><label class="typo__label">Tagging</label>
+          <!-- <div class="q-my-md"><label class="typo__label">Tagging</label>
             <multiselect class="q-my-md" v-model="tags" placeholder="Search" label="name" track-by="name"
               :options="noteTags" :multiple="true" :taggable="true">
             </multiselect>
-          </div>
+          </div> -->
 
           <q-page-sticky position="bottom-right" :offset="[18, 18]">
             <q-btn type="submit" fab icon="done" color="primary">
@@ -29,7 +29,7 @@
           </q-page-sticky>
 
           <q-page-sticky position="bottom-left" :offset="[18, 18]">
-            <q-btn  :to="{ 'name': 'home' }" fab icon="undo" color="negative">
+            <q-btn :to="{ 'name': 'home' }" fab icon="undo" color="negative">
             </q-btn>
           </q-page-sticky>
         </q-form>
@@ -43,43 +43,52 @@ import { ref } from 'vue';
 import { useRouter } from "vue-router";
 import { nanoid } from 'nanoid';
 import { Notify } from 'quasar';
-import Multiselect from 'vue-multiselect'
+// import Multiselect from 'vue-multiselect'
 
 import { useNotesStore } from '../stores/notes';
 
 const notesStore = useNotesStore();
 const router = useRouter();
 
-const tags = ref([]);
 const noteTitle = ref("");
 const noteContent = ref("");
-const noteTags = ref([]);
+// const tags = ref([]);
+// const noteTags = ref([]);
 
-noteTags.value = notesStore.tags;
-console.log(noteTags.value)
+// noteTags.value = notesStore.tags;
 
 function handleSubmit() {
-  notesStore.addNote({
-    id: nanoid(),
-    title: noteTitle.value,
-    content: noteContent.value,
-    tags: tags.value,
-    dateAdded: Date.now()
-  })
+  try {
+    notesStore.addNote({
+      id: nanoid(),
+      title: noteTitle.value,
+      content: noteContent.value,
+      // tags: tags.value,
+      dateAdded: Date.now()
+    })
 
-  // Clear form fields
-  noteTitle.value = '';
-  noteContent.value = '';
+    // Clear form fields
+    noteTitle.value = '';
+    noteContent.value = '';
 
-  
-  Notify.create({
-    message: 'Note Added Successfully',
-    type: "positive",
-    actions: [
-      { icon: 'close', color: 'white', round: true, }
-    ]
-  })
-  router.push('/')
+
+    Notify.create({
+      message: 'Note Added Successfully',
+      type: "positive",
+      actions: [
+        { icon: 'close', color: 'white', round: true, }
+      ]
+    })
+    router.push('/')
+  } catch (error) {
+    Notify.create({
+      message: error.message,
+      type: "negative",
+      actions: [
+        { icon: 'close', color: 'white', round: true, }
+      ]
+    })
+  }
 }
 </script>
 

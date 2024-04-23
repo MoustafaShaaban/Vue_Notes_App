@@ -41,23 +41,32 @@ const router = useRouter();
 const tagName = ref("");
 
 function handleSubmit() {
-    notesStore.addTag({
-        id: nanoid(),
-        name: tagName.value,
-    })
+    try {
+        notesStore.addTag({
+            id: nanoid(),
+            name: tagName.value,
+        })
 
-    // Clear form fields
-    tagName.value = '';
+        // Clear form fields
+        tagName.value = '';
 
-
-    Notify.create({
-        message: 'Tag Added Successfully',
-        type: "positive",
-        actions: [
-            { icon: 'close', color: 'white', round: true, }
-        ]
-    })
-    router.push('/tags')
+        Notify.create({
+            message: 'Tag Added Successfully',
+            type: "positive",
+            actions: [
+                { icon: 'close', color: 'white', round: true, }
+            ]
+        })
+        router.push('/tags')
+    } catch (error) {
+        Notify.create({
+            message: error.message,
+            type: "negative",
+            actions: [
+                { icon: 'close', color: 'white', round: true, }
+            ]
+        })
+    }
 }
 </script>
 
