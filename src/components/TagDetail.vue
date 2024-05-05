@@ -1,8 +1,87 @@
+
+<script setup>
+import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { Dialog, Notify } from 'quasar';
+
+import { useNotesStore } from '../stores/notes';
+
+const notesStore = useNotesStore();
+const route = useRoute();
+const router = useRouter();
+
+const isEditing = ref(false);
+
+const tag = ref({
+    id: '',
+    name: ''
+});
+
+tag.value = notesStore.getTagById(route.params.id);
+
+
+function handleSubmit() {
+    try {
+        notesStore.updateTag(route.params.id, tag.value);
+
+        Notify.create({
+            message: 'Tag Updated Successfully',
+            type: "positive",
+            actions: [
+                { icon: 'close', color: 'white', round: true, }
+            ]
+        })
+
+        // router.push({ name: 'tag-detail', params: { id: route.params.id } })
+    } catch (error) {
+        Notify.create({
+            message: error.message,
+            type: "negative",
+            actions: [
+                { icon: 'close', color: 'white', round: true, }
+            ]
+        })
+    }
+};
+
+function confirm(id) {
+    Dialog.create({
+        dark: true,
+        title: 'Confirm',
+        color: 'primary',
+        message: 'Delete this tag?, Your Notes that has this tag will not be deleted',
+        cancel: true,
+        persistent: true
+    }).onOk(() => {
+        try {
+            notesStore.deleteTag(id)
+            router.push('/tags');
+            Notify.create({
+                message: 'Tag Deleted Successfully',
+                type: "positive",
+                actions: [
+                    { icon: 'close', color: 'white', round: true, }
+                ]
+            })
+        } catch (error) {
+            console.log(error)
+            Notify.create({
+                message: error.message,
+                type: "negative",
+                actions: [
+                    { icon: 'close', color: 'white', round: true, }
+                ]
+            })
+        }
+    })
+};
+</script>
+
 <template>
     <q-page class="flex flex-center">
         <q-card v-if="isEditing" flat bordered class="my-card">
             <q-card-section class="row items-center q-pb-none q-mb-md" vertical>
-                <div class="text-h6">Edit: {{ tag.name }}</div>
+                <div class="text-h6">Edit Tag:</div>
             </q-card-section>
 
             <q-card-section>
@@ -37,7 +116,7 @@
 
             <q-card-actions>
                 <q-btn color="primary" type="button" size="sm" @click="isEditing = true">Edit</q-btn>
-                <q-btn color="negative" type="button" size="sm" @click="confirm">Delete</q-btn>
+                <q-btn color="negative" type="button" size="sm" @click="confirm(tag.id)">Delete</q-btn>
             </q-card-actions>
         </q-card>
 
@@ -47,81 +126,6 @@
         </q-page-sticky>
     </q-page>
 </template>
-
-<script setup>
-    import { ref } from 'vue';
-    import { useRoute, useRouter } from 'vue-router';
-    import { Dialog, date, Notify } from 'quasar';
-
-    import { useNotesStore } from '../stores/notes.js';
-
-    const notesStore = useNotesStore();
-    const route = useRoute();
-    const router = useRouter();
-
-    const isEditing = ref(false);
-
-    const tag = ref({
-        id: '',
-        name: ''
-    });
-
-    tag.value = notesStore.getTagById(route.params.id);
-
-    function handleSubmit() {
-        try {
-            notesStore.updateTag(route.params.id, tag.value);
-            isEditing = false;
-            Notify.create({
-                message: 'Tag Updated Successfully',
-                type: "positive",
-                actions: [
-                    { icon: 'close', color: 'white', round: true, }
-                ]
-            })
-        } catch (error) {
-            Notify.create({
-                message: error.message,
-                type: "negative",
-                actions: [
-                    { icon: 'close', color: 'white', round: true, }
-                ]
-            })
-        }
-    };
-
-    function confirm(id) {
-        Dialog.create({
-            dark: true,
-            title: 'Confirm',
-            color: 'primary',
-            message: 'Delete this tag?, Your Notes that has this tag will not be deleted',
-            cancel: true,
-            persistent: true
-        }).onOk(() => {
-            try {
-                notesStore.deleteTag(id)
-                router.push('/tags');
-                Notify.create({
-                    message: 'Tag Deleted Successfully',
-                    type: "positive",
-                    actions: [
-                        { icon: 'close', color: 'white', round: true, }
-                    ]
-                })
-            } catch (error) {
-                Notify.create({
-                    message: error.message,
-                    type: "negative",
-                    actions: [
-                        { icon: 'close', color: 'white', round: true, }
-                    ]
-                })
-            }
-        })
-    };
-</script>
-
 
 <style lang="sass" scoped>
 .my-card

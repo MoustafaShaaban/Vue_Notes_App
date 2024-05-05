@@ -1,7 +1,6 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { date } from 'quasar';
-import { RouterLink } from 'vue-router';
 import { useNotesStore } from '../stores/notes';
 
 const notesStore = useNotesStore();
@@ -30,7 +29,9 @@ const searchResult = computed(() => {
               <div class="text-h6">{{ note.title }}</div>
               <div class="text-subtitle2">
                 {{ date.formatDate(note.dateAdded, 'DD MMMM YYYY') }}
-                <!-- <q-badge rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">{{ tag.name}}</q-badge> -->
+                <q-badge clickable rounded color="primary" class="q-mx-xs" v-for="tag in note.tags">
+                  <q-breadcrumbs-el :label="tag.name" :to="{ name: 'tag-detail', params: { id: tag.id } }" />
+                </q-badge>
               </div>
             </div>
 
