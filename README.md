@@ -14,6 +14,11 @@ A notes app built using:
 [Vue-multiselect](https://vue-multiselect.js.org/)
 
 
+### Live Preview
+
+[Vue Notes App](https://moustafashaaban.github.io/Vue_Notes_App/)
+
+
 ###  Project Goals
 
 * Create, Read, Update and Delete (CRUD) notes.
