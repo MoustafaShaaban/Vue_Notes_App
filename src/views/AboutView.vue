@@ -22,6 +22,9 @@
               3</a>
           </q-item>
           <q-item clickable v-ripple>
+            <a :class="$q.dark.isActive ? 'text-white' : 'text-dark'" href="https://pinia.vuejs.org//" target="_blank">Pinia</a>
+          </q-item>
+          <q-item clickable v-ripple>
             <a :class="$q.dark.isActive ? 'text-white' : 'text-dark'" href="https://vueuse.org/"
               target="_blank">VueUse</a>
           </q-item>
