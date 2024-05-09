@@ -3,9 +3,9 @@
 A notes app built using:
 
 * [Vue.js 3](https://vuejs.org/)
-* [Quasar Framework](https://quasar.dev/),
-* [Pinia](https://pinia.vuejs.org/),
-* [VueUse](https://vueuse.org/),
+* [Quasar Framework](https://quasar.dev/)
+* [Pinia](https://pinia.vuejs.org/)
+* [VueUse](https://vueuse.org/)
 * [Vue-multiselect](https://vue-multiselect.js.org/)
 
 
