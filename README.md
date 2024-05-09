@@ -1,17 +1,12 @@
-# Vue 3 + Vite
-
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-
 # Vue Notes App
 
 A notes app built using:
 
-[Vue.js 3](https://vuejs.org/)
-[Quasar Framework](https://quasar.dev/),
-[Pinia](https://pinia.vuejs.org/),
-[VueUse](https://vueuse.org/),
-[Vue-multiselect](https://vue-multiselect.js.org/)
+* [Vue.js 3](https://vuejs.org/)
+* [Quasar Framework](https://quasar.dev/),
+* [Pinia](https://pinia.vuejs.org/),
+* [VueUse](https://vueuse.org/),
+* [Vue-multiselect](https://vue-multiselect.js.org/)
 
 
 ### Live Preview
@@ -41,6 +36,11 @@ A notes app built using:
 * Run the development server ``` npm run dev ```
 
 * Open the web browser and go to ` http://localhost:5173/ ` to see the results.
+
+
+# Vue 3 + Vite
+
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
 
 ## Recommended IDE Setup
