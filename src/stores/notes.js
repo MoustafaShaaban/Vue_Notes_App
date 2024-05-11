@@ -59,16 +59,15 @@ export const useNotesStore = defineStore("notes", {
     },
 
     deleteTag(id) {
-      const note = this.notes.filter((note) => {
+      this.notes.filter((note) => {
         note.tags.find((tag) => tag.id === id);
 
         note.tags = note.tags.filter((tag) => {
           return tag.id !== id;
         });
-
-        this.tags = this.tags.filter((tag) => {
-          return tag.id !== id;
-        });
+      });
+      this.tags = this.tags.filter((tag) => {
+        return tag.id !== id;
       });
     },
   },

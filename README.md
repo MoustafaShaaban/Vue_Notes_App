@@ -22,7 +22,7 @@ A notes app built using:
 
 * Link notes by tags.
 
-* Persist Notes using the localStorage API.
+* Persist Notes and Tags using the localStorage API.
 
 * Search for notes by note title or content.
 
