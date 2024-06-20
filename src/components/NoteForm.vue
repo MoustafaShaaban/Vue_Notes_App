@@ -64,7 +64,7 @@ function handleSubmit() {
       <q-card-section>
         <q-form @submit.prevent="handleSubmit">
           <q-input autocomplete filled v-model="noteTitle" label="Note Title" required lazy-rules
-            :rules="[val => val && val.length > 0 || 'Note Title is required']" />
+            :rules="[val => val && val.length > 0 || 'Note Title is required']"  autofocus />
 
           <q-input filled v-model="noteContent" type="textarea" required label="Note Content" lazy-rules
             :rules="[val => val && val.length > 0 || 'Note Content is required']" />

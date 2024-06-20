@@ -156,7 +156,7 @@ function confirm(id) {
 
             <q-card-actions>
                 <q-btn color="primary" type="button" size="sm" @click="isEditing = true">Edit</q-btn>
-                <q-btn color="negative" type="button" size="sm" @click="confirm">Delete</q-btn>
+                <q-btn color="negative" type="button" size="sm" @click="confirm(note.id)">Delete</q-btn>
             </q-card-actions>
         </q-card>
 

@@ -42,9 +42,15 @@ export const useNotesStore = defineStore("notes", {
       console.log(noteToEdit.title);
     },
 
+    // deleteNote(id) {
+    //   const noteToDelete = this.notes.findIndex((note) => note.id === id);
+    //   this.notes.splice(noteToDelete);
+    // },
+
     deleteNote(id) {
-      const noteToDelete = this.notes.findIndex((note) => note.id === id);
-      this.notes.splice(noteToDelete);
+      this.notes = this.notes.filter((note) => {
+        return note.id !== id;
+      })
     },
 
     addTag(tag) {

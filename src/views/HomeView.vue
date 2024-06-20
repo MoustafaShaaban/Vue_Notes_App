@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue';
-import { date } from 'quasar';
+import { date, Dialog, Notify } from 'quasar';
 import { useNotesStore } from '../stores/notes';
 
 const notesStore = useNotesStore();
@@ -12,6 +12,36 @@ const searchResult = computed(() => {
     );
   });
 });
+
+function confirm(id) {
+    Dialog.create({
+        dark: true,
+        title: 'Confirm',
+        color: 'primary',
+        message: 'Are you sure you want to delete this note?',
+        cancel: true,
+        persistent: true
+    }).onOk(() => {
+        try {
+            notesStore.deleteNote(id)
+            Notify.create({
+                message: 'Note Deleted Successfully',
+                type: "positive",
+                actions: [
+                    { icon: 'close', color: 'white', round: true, }
+                ]
+            })
+        } catch (error) {
+            Notify.create({
+                message: error.message,
+                type: "negative",
+                actions: [
+                    { icon: 'close', color: 'white', round: true, }
+                ]
+            })
+        }
+    })
+};
 
 </script>
 
@@ -39,8 +69,11 @@ const searchResult = computed(() => {
               <q-btn color="grey-7" round flat icon="more_vert">
                 <q-menu cover auto-close>
                   <q-list>
+                    <q-item clickable :to="{ name: 'note-detail', params: { id: note.id } }">
+                      <q-item-section>Details</q-item-section>
+                    </q-item>
                     <q-item clickable>
-                      <q-item-section color="negative">Remove Card</q-item-section>
+                      <q-item-section color="negative" @click="confirm(note.id)">Delete</q-item-section>
                     </q-item>
                   </q-list>
                 </q-menu>

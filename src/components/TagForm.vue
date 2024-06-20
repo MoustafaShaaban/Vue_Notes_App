@@ -53,7 +53,7 @@ function handleSubmit() {
             <q-card-section>
                 <q-form @submit.prevent="handleSubmit">
                     <q-input filled v-model="tagName" label="Tag Name" required lazy-rules
-                        :rules="[val => val && val.length > 0 || 'Tag Name is required']" />
+                        :rules="[val => val && val.length > 0 || 'Tag Name is required']"  autofocus />
 
                     <q-page-sticky position="bottom-right" :offset="[18, 18]">
                         <q-btn type="submit" fab icon="done" color="primary">
