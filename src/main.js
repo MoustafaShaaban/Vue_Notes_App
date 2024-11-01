@@ -3,6 +3,8 @@ import { createPinia } from 'pinia'
 import 'vue-multiselect/dist/vue-multiselect.css'
 import App from './App.vue'
 import { Quasar, Dark, Notify, Dialog } from 'quasar'
+
+
 import router from './router'
 
 // Import icon libraries

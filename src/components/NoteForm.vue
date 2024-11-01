@@ -81,7 +81,7 @@ function handleSubmit() {
               :options="noteTags" 
               :multiple="true" 
               :taggable="true"
-              :close-on-select="false"
+              :close-on-select="true"
               :clear-on-select="false"
             >
             </multiselect>
